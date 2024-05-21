@@ -1,0 +1,36 @@
+---
+title: "Interactive Plotly Presentation"
+author: "may4026"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(plotly)
+library(lubridate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Create a sample dataset
+```{r}
+data <- data.frame(
+  Date = seq(from = as.Date("2021-01-01"), to = as.Date("2021-12-31"), by = "month"),
+  Value = c(10, 20, 15, 25, 30, 22, 18, 24, 27, 33, 29, 31)
+)
+
+# Create the interactive Plotly plot
+fig <- plot_ly(data, x = ~Date, y = ~Value, type = 'scatter', mode = 'lines+markers',
+               marker = list(color = 'rgb(255, 65, 54)'),
+               line = list(color = 'rgb(255, 65, 54)'))
+
+# Customize layout
+fig <- fig %>% layout(title = 'Monthly Values Over Time',
+                      xaxis = list(title = 'Date'),
+                      yaxis = list(title = 'Value'))
+
+fig
+```
+
+#Conclusion
+
+Thank you for viewing this presentation. The interactive plot above was created using Plotly in R.
